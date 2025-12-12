@@ -1,0 +1,26 @@
+# Execution limits
+limit: 2000             # Maximum instructions to execute
+memory_size: 8192       # Memory size in bytes
+
+# I/O configuration
+memory_mapped_io:
+  0x80: ["Alice\n"]     # Input values at address 0x80
+  0x84: []              # Output-only port at address 0x84
+#0x80: ["Alice1234567890123456789\n"] 
+#0x80: ["Alice123456789012345678\n"] 
+
+# Reports configuration
+reports:
+  - name: "Execution trace\n  ip    REG A      REG B      TOP        SECOND     instruction"
+    slice: ["tail", 10]
+    view: |
+      {pc}: {A:hex} {B:hex} {T:hex} {S:hex} {instruction} {pc:label}
+
+  - name: "Result verification"
+    slice: last
+    view: |
+      symio[0x84]: {io:0x84:sym}
+      {memory:0:31}
+    assert: |
+      symio[0x84]: "" >>> "What is your name?\nHello, Alice!"
+      mem[0..31]: 	0d 48 65 6c 6c 6f 2c 20 41 6c 69 63 65 21 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f

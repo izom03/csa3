@@ -1,0 +1,22 @@
+# Execution limits
+limit: 2000             # Maximum instructions to execute
+memory_size: 8192       # Memory size in bytes
+
+# I/O configuration
+memory_mapped_io:
+  0x80: [12345]     # Input values at address 0x80
+  0x84: []              # Output-only port at address 0x84
+
+# Reports configuration
+reports:
+  - name: "Execution trace\n  ip   REG A0     REG A1     REG A2     REG A3     REG A4     instruction"
+    slice: ["tail", 10]
+    view: |
+      {pc}: {A0:hex} {A1:hex} {A2:hex} {A3:hex} {A4:hex} {instruction} {pc:label}
+
+  - name: "Result verification"
+    slice: last
+    view: |
+      numio[0x84]: {io:0x84:dec}
+    assert: |
+      numio[0x84]: [] >>> [15]
