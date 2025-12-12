@@ -18,7 +18,7 @@
 
 ## f32a
 
-Функция: [reverse_bits](https://github.com/ryukzak/wrench/blob/master/variants.md#hello_user_pstr)
+Функция: [hello_user_pstr](https://github.com/ryukzak/wrench/blob/master/variants.md#hello_user_pstr)
 
 [Программа](hello_user_pstr.f32a.s)
 
@@ -28,7 +28,7 @@
 
 ## RISC-IV
 
-Функция: [reverse_bits](https://github.com/ryukzak/wrench/blob/master/variants.md#sum_of_digits)
+Функция: [sum_of_digits](https://github.com/ryukzak/wrench/blob/master/variants.md#sum_of_digits)
 
 [Программа](sum_of_digits.risc-iv.s)
 
