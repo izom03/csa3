@@ -6,6 +6,25 @@
 
 Группа: P3330
 
+## Запуск программ
+
+### Запуск напрямую через Wrench
+```
+wrench INPUT.s --isa ISA -c CONF.yaml
+```
+
+### Запуск через скрипт
+```
+Использование:
+  ./run.sh <program>
+
+Где <program> может быть:
+
+  1 | reverse_bits    | acc32
+  2 | hello_user_pstr | f32a
+  3 | sum_of_digits   | risc-iv-32
+```
+
 ## acc32
 
 Функция: [reverse_bits](https://github.com/ryukzak/wrench/blob/master/variants.md#reverse_bits)
