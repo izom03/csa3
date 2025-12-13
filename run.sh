@@ -41,12 +41,8 @@ case "$arg" in
         cfg="risc-iv/sum_of_digits.yaml"
         name="sum_of_digits"
         ;;
-    help|-h|--help)
-        print_help
-        exit 0
-        ;;
     *)
-        echo "❌ Неизвестный аргумент: $arg"
+        echo "Неизвестный аргумент: $arg"
         echo
         print_help
         exit 1
