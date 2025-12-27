@@ -3,7 +3,7 @@ input_addr:     .word 0x80
 output_addr:    .word 0x84
 
 .text
-.org 0x100
+.org 0x88
 _start:
     lui     a0, %hi(input_addr)
     addi    a0, a0, %lo(input_addr)

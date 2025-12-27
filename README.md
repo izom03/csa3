@@ -33,7 +33,7 @@ wrench INPUT.s --isa ISA -c CONF.yaml
 
 [Конфигурация](acc32/reverse_bits.yaml)
 
-[Wrench](https://wrench.edu.swampbuds.me/report/39a59d3b-9f95-458e-9518-8d4e886101ea)
+[Wrench](https://wrench.edu.swampbuds.me/report/3c2eb6e7-3e19-4173-8ab1-3183a7378149)
 
 ## f32a
 
@@ -43,7 +43,7 @@ wrench INPUT.s --isa ISA -c CONF.yaml
 
 [Конфигурация](f32a/hello_user_pstr.yaml)
 
-[Wrench](https://wrench.edu.swampbuds.me/report/f99a2daf-f6b0-45ce-bf9e-c9f28e54e841)
+[Wrench](https://wrench.edu.swampbuds.me/report/e5ebb394-2f62-4ed8-836a-9840f47d41b0)
 
 ## RISC-IV
 
@@ -53,4 +53,4 @@ wrench INPUT.s --isa ISA -c CONF.yaml
 
 [Конфигурация](risc-iv/sum_of_digits.yaml)
 
-[Wrench](https://wrench.edu.swampbuds.me/report/55a67eeb-08b1-466b-819e-b9d54cb5dcd3)
+[Wrench](https://wrench.edu.swampbuds.me/report/fd2ae693-89d2-4d9d-9984-78fffb0f2575)

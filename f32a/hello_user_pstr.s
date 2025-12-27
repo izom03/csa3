@@ -1,5 +1,4 @@
 .data
-.org 0x0
 buffer:         .byte  7, 'Hello, ________________________'
 
 ask_str:        .byte  19, 'What is your name?\n'
@@ -9,7 +8,7 @@ input_addr:     .word 0x80
 output_addr:    .word 0x84
 
 .text
-.org 0x500
+.org 0x88
 byte:
     lit 0xFF and
     ;
@@ -23,13 +22,11 @@ sub:
     ;
 
 _start:
-    \ Выводим строку вопроса
-    lit ask_str a!
+    lit ask_str a!              \ Выводим строку вопроса
     @p output_addr b!
     print_string
 
-    \ Ввод пользователя
-    @p input_addr b!
+    @p input_addr b!            \ Ввод пользователя
     read_line
 
     if successful_read
@@ -43,23 +40,19 @@ successful_read:
     lit message_end b!
     message_end_add
 
-    \ Вывод приветствия
-    lit buffer a!
+    lit buffer a!               \ Вывод приветствия
     @p output_addr b!
     print_string
 
     halt
 
 print_string:
-    \ Читаем длину строки
-    @+ byte
+    @+ byte                     \ Читаем длину строки
 print_string_loop:
-    \ Выход если оставшаяся длина == 0
-    dup
+    dup                         \ Выход если оставшаяся длина == 0
     if print_string_exit
 
-    \ Выводим символ
-    lit -1 +
+    lit -1 +                    \ Выводим символ
     @+ byte
     !b
 
@@ -79,25 +72,22 @@ message_end_add:
 
 read_line:
 read_line_loop:
-    \ Читаем символ
-    @b
+    @b                          \ Читаем символ
     dup
 
-    \ Если \n, то выход
-    lit 0xA sub
+    lit 0xA sub                 \ Если \n, то выход
     if read_line_exit_success
 
-    \ Увеличиваем длину строки
-    lit buffer a!
+    lit buffer a!               \ Увеличиваем длину строки
     @ byte lit 1 +
     dup
-    \ Если длина == 30 - ошибка
-    lit 30 sub
+
+    lit 30 sub                  \ Если длина == 30 - ошибка
     if read_line_exit_failure
-    \ Сохраняем длину
-    dup @ lit 0xFFFFFF00 and + !
-    \ Добавляем символ
-    lit buffer + a!
+
+    dup @ lit 0xFFFFFF00 and + !    \ Сохраняем длину
+
+    lit buffer + a!             \ Добавляем символ
     @ lit 0xFFFFFF00 and + !
     read_line_loop ;
 read_line_exit_failure:

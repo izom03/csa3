@@ -1,5 +1,4 @@
 .data
-.org 0x0
 input_addr:     .word 0x80
 output_addr:    .word 0x84
 input:          .word 0
@@ -8,37 +7,30 @@ one:            .word 1
 count:          .word 32
 
 .text
-.org 0x500
+.org 0x88
 _start:
-    ; Загрузка ввода
-    load_ind    input_addr
+    load_ind    input_addr  ; Загрузка ввода
     store_addr  input
 loop_start:
-    ; Сдвиг вывода
-    load_addr   output
+    load_addr   output      ; Сдвиг вывода
     shiftl      one
     store_addr  output
 
-    ; Извлекаем бит
-    load_addr   input
+    load_addr   input       ; Извлекаем бит
     and         one
     or          output
     store_addr  output
 
-    ; Сдвиг ввода
-    load_addr   input
+    load_addr   input       ; Сдвиг ввода
     shiftr      one
     store_addr  input
 
-    ; Декремент счётчика
-    load_addr   count
+    load_addr   count       ; Декремент счётчика
     sub         one
     store_addr  count
 
-    ; Возвращение
-    bnez        loop_start
+    bnez        loop_start  ; Возвращение
 
-    ; Выгрузка ввода
-    load_addr   output
+    load_addr   output      ; Выгрузка ввода
     store_ind   output_addr
     halt
